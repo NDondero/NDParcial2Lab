@@ -5,7 +5,9 @@ import JSON.IFromJSON;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Perfil implements IFromJSON {
+import java.io.Serializable;
+
+public class Perfil implements IFromJSON, Serializable {
     private final String dob;
     private String name;
     private String about;

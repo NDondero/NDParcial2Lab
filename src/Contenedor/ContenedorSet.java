@@ -1,9 +1,10 @@
 package Contenedor;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class ContenedorSet<T> {
+public class ContenedorSet<T> implements Serializable {
     private HashSet<T> coleccion;
 
     public ContenedorSet() {

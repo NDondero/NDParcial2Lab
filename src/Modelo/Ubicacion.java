@@ -4,7 +4,9 @@ import JSON.IFromJSON;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Ubicacion implements IFromJSON {
+import java.io.Serializable;
+
+public class Ubicacion implements IFromJSON, Serializable {
     private double latitud;
     private double longitud;
 

@@ -8,9 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
-public class Usuario implements IFromJSON {
+public class Usuario implements IFromJSON, Serializable {
     private String id;
     private String email;
     private ContenedorSet<String> roles;

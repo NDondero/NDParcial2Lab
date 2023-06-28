@@ -1,5 +1,6 @@
 package Controlador;
 
+import Controlador.Generico.ControladorArchivoObjetos;
 import Controlador.Generico.ControladorDeMapas;
 import Excepciones.UsernameEnUsoException;
 import JSON.JsonUtiles;
@@ -7,6 +8,7 @@ import Modelo.Usuario;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class ControladorDeUsuarios extends ControladorDeMapas<String, Usuario> {
@@ -72,6 +74,25 @@ public class ControladorDeUsuarios extends ControladorDeMapas<String, Usuario> {
         JsonUtiles.grabar(jsonArray, archivo);
     }
 
+    public void grabarArchivoBinario(ArrayList<Usuario> usuarios, String archivo) {
+        new ControladorArchivoObjetos<Usuario>().grabar(usuarios, archivo);
+    }
+
+    public ArrayList<Usuario> filtrarPorRol(String rol) {
+        ArrayList<Usuario> usuarioArrayList = new ArrayList<>();
+        Collection<Usuario> usuarios = super.valores();
+        for (Usuario usuario : usuarios) {
+            if (usuario.buscarRol(rol)) {
+                usuarioArrayList.add(usuario);
+            }
+        }
+        return usuarioArrayList;
+    }
+
+    public ArrayList<Usuario> leerArchivoBinario(String archivo) {
+        return new ControladorArchivoObjetos<Usuario>().leer(archivo);
+    }
+
     public String listar() {
         StringBuilder stringBuilder = new StringBuilder();
         Collection<Usuario> usuarios = super.valores();
@@ -80,6 +101,4 @@ public class ControladorDeUsuarios extends ControladorDeMapas<String, Usuario> {
         }
         return stringBuilder.toString();
     }
-
-    // TODO agregar funcionalidad para grabar en un archivo de Usuarios todos los usuarios que cumplan con un requisito, por ejemplo un determinador rol
 }
