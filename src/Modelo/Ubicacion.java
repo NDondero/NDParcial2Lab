@@ -42,4 +42,9 @@ public class Ubicacion implements IFromJSON {
         setLatitud(jsonObject.getDouble("lat"));
         setLongitud(jsonObject.getDouble("long"));
     }
+
+    @Override
+    public JSONObject toJSON() throws JSONException {
+        return new JSONObject().put("lat", latitud).put("long", longitud);
+    }
 }

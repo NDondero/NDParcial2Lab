@@ -2,6 +2,7 @@ package Controlador;
 
 import Controlador.Generico.ControladorDeMapas;
 import Excepciones.UsernameEnUsoException;
+import JSON.JsonUtiles;
 import Modelo.Usuario;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,6 +59,19 @@ public class ControladorDeUsuarios extends ControladorDeMapas<String, Usuario> {
         }
     }
 
+    public void grabarJSON(String archivo) {
+        JSONArray jsonArray = new JSONArray();
+        Collection<Usuario> usuarios = super.valores();
+        for (Usuario usuario : usuarios) {
+            try {
+                jsonArray.put(usuario.toJSON());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        JsonUtiles.grabar(jsonArray, archivo);
+    }
+
     public String listar() {
         StringBuilder stringBuilder = new StringBuilder();
         Collection<Usuario> usuarios = super.valores();
@@ -67,5 +81,5 @@ public class ControladorDeUsuarios extends ControladorDeMapas<String, Usuario> {
         return stringBuilder.toString();
     }
 
-    // TODO: agregar funcionalidad para grabar en un archivo de Usuarios todos los usuarios que cumplan con un requisito, por ejemplo un determinador rol
+    // TODO agregar funcionalidad para grabar en un archivo de Usuarios todos los usuarios que cumplan con un requisito, por ejemplo un determinador rol
 }

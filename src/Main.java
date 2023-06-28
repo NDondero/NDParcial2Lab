@@ -9,5 +9,7 @@ public class Main {
 
         System.out.println("cantidad de guests: " + sistema.contarPorRol("guest"));
         System.out.println("esta Adriana Hines? " + sistema.buscarPorNombre("Adriana Hines"));
+
+        sistema.grabarJSON("nuevosDatos");
     }
 }

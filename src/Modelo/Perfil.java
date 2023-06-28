@@ -100,4 +100,9 @@ public class Perfil implements IFromJSON {
         setName(jsonObject.getString("name"));
         location.fromJSON(jsonObject.getJSONObject("location"));
     }
+
+    @Override
+    public JSONObject toJSON() throws JSONException {
+        return new JSONObject().put("dob", dob).put("name", name).put("about", about).put("address", address).put("company", company).put("location", location.toJSON());
+    }
 }

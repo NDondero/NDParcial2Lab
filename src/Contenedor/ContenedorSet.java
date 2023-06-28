@@ -26,6 +26,10 @@ public class ContenedorSet<T> {
         return coleccion.iterator();
     }
 
+    public int cantidad() {
+        return coleccion.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
+
 public class Usuario implements IFromJSON {
     private String id;
     private String email;
@@ -146,5 +148,21 @@ public class Usuario implements IFromJSON {
         } catch (AnioInvalidoException e) {
             throw new JSONException(e);
         }
+    }
+
+    @Override
+    public JSONObject toJSON() throws JSONException {
+        JSONArray roles = new JSONArray();
+        Iterator<String> it = this.roles.elementos();
+        while (it.hasNext()) {
+            roles.put(it.next());
+        }
+        return new JSONObject().put("id", id).
+                put("email", email).
+                put("roles", roles).
+                put("apiKey", apiKey).
+                put("profile", profile.toJSON()).
+                put("username", username).
+                put("createdAt", createdAt).put("updatedAt", updatedAt);
     }
 }
